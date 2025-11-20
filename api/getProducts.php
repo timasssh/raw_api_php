@@ -1,5 +1,5 @@
 <?php
 
-function getProducts() {
-    return  json_encode(["route" => "Get all products"]);
+function getProducts($data) {
+    return $data;
 }
