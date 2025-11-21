@@ -13,12 +13,12 @@ class Product{
     public function getId(): int {
         return $this->id;
     }
-    public function setId(): int {
-        self::$idCounter++;
-        return self::$idCounter;
-    }
     public function forceId($id):void {
         $this->id = $id;
+    }
+    public function setId(): void {
+        $this->forceId(self::$idCounter);
+        self::$idCounter++;
     }
 
     // getters and setters
@@ -49,7 +49,7 @@ class Product{
 
     public function __construct($name = "", $price = 0.0, $category = "", $stockQuantity = 0) {
 
-        $this->id = $this->setId();
+        $this->setId();
         $this->setName($name);
         $this->setPrice($price);
         $this->setCategory($category);
