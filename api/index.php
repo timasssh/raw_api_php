@@ -9,19 +9,14 @@ include("./deleteProduct.php");
 
 header("Content-Type: application/json; charset=utf-8");
 
-$contador = 0;
-
 $initialData = [];
-$product1 = new Product($contador, "Produto 1", 5.0, "Geral", 10);
-$contador++;
-$product2 = new Product($contador, "Produto 2", 45.0, "Bebida", 23);
-$contador++;
-$product3 = new Product($contador, "Produto 3", 17.0, "Comida", 1);
-$contador++;
+$product1 = new Product("Produto 1", 5.0, "Geral", 10);
+$product2 = new Product("Produto 2", 45.0, "Bebida", 23);
+$product3 = new Product("Produto 3", 17.0, "Comida", 1);
 
-array_push($initialData, $product1);
-array_push($initialData, $product2);
-array_push($initialData, $product3);
+array_push($initialData, $product1->toArray());
+array_push($initialData, $product2->toArray());
+array_push($initialData, $product3->toArray());
 
 setcookie("data", json_encode($initialData), time() + 60, "/");
 
