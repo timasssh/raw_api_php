@@ -17,5 +17,5 @@ function getProduct() {
         }
     }
     
-    return error("Nenhum produto encontrado!");
+    return error("Produto não encontrado!");
 }

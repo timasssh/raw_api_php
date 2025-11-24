@@ -22,7 +22,9 @@ setcookie("data", json_encode($initialData), time() + 60, "/");
 
 $requestedMethod = $_SERVER["REQUEST_METHOD"];
 if($requestedMethod === "GET"){
-    if(empty($_GET)) {
+    if(empty($_COOKIE["data"])) {
+        echo error("Nenhum produto encontrado!");
+    }else if(empty($_GET)) {
         echo getProducts($_COOKIE["data"]);
     }else {
         echo getProduct();
