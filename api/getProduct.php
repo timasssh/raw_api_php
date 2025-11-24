@@ -1,15 +1,18 @@
 <?php
 
-function getProduct() {
+include_once("../utils/error.php");
+include_once("../utils/getData.php");
+
+function getProduct($data) {
     if(!isset($_GET["id"])) return error("Esse não é um id válido!");
     
     $id = (int)$_GET["id"];
-    $data = $_COOKIE["data"] ?? false;
+    $data = getData();
 
     if(!$data) return error("Nenhum produto encontrado!");
     if($id < 0) return error("Esse não é um id válido!");
     
-    foreach(json_decode($data) as $product) {
+    foreach($data as $product) {
         $productId = $product->id;
 
         if($productId === $id) {
