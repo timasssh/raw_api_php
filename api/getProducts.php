@@ -1,7 +1,8 @@
 <?php
 
+include_once("../utils/success.php");
 include_once("../utils/getData.php");
 
 function getProducts() {
-    return json_encode(getData());
+    return success(200, "Listando produtos...", getData());
 }
