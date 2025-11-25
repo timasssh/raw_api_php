@@ -1,7 +1,7 @@
 <?php
 
 function getData() {
-    $data = json_decode($_COOKIE["data"]) ?? null;
+    $data = $_COOKIE["data"] ?? null;
 
-    return $data;
+    return json_decode($data);
 }
