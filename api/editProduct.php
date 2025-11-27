@@ -1,12 +1,15 @@
 <?php
 
+include_once("../utils/validateUserRole.php");
+include_once("../utils/error.php");
+include_once("../utils/success.php");
 include_once("../utils/getData.php");
 include_once("../utils/getProductFromParams.php");
 include_once("../utils/updateData.php");
-include_once("../utils/success.php");
-include_once("../utils/error.php");
 
 function editProduct() {
+    if(!validateUserRole()) { return error("Permissão para acessar essa rota negada!"); }
+    
     if(!isset($_POST["id"])) return error("Parâmetros faltando!");
     if((int)$_POST["id"] < 0) return error("Esse não é um id válido!");
     

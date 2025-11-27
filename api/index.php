@@ -1,4 +1,17 @@
 <?php
+
+session_start();
+
+if(empty($_SESSION["role"])) {
+    if(empty($_POST["role"]) || $_POST["role"] !== "admin" && $_POST["role"] !== "user") {
+        $_SESSION["role"] = "user";
+    }else {
+        $_SESSION["role"] = $_POST["role"];
+    }
+}else {
+    if(isset($_POST["role"]) && $_SESSION["role"] !== $_POST["role"]) $_SESSION["role"] = $_POST["role"];
+}
+
 include("../Models/Product.php");
 include("../utils/updateData.php");
 include("../utils/error.php");

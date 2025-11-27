@@ -1,5 +1,11 @@
 <?php
 
+$variablesFile = parse_ini_file("../.env");
+$expirationTime = $variablesFile["MINUMUM_COOKIE_EXPIRATION_TIME"];
+
 function updateData($data) {
-    setcookie("data", json_encode($data), time() + 60, "/");
+    $variablesFile = parse_ini_file("../.env");
+    $expirationTime = $variablesFile["MINUMUM_COOKIE_EXPIRATION_TIME"];
+    
+    setcookie("data", json_encode($data), time() + (int)$expirationTime, "/");
 }

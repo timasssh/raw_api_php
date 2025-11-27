@@ -1,5 +1,6 @@
 <?php
 
+include_once("../utils/validateUserRole.php");
 include_once("../utils/error.php");
 include_once("../utils/validateProduct.php");
 include_once("../utils/getData.php");
@@ -8,6 +9,8 @@ include_once("../utils/getProductFromParams.php");
 include_once("../utils/success.php");
 
 function createProduct() {
+    if(!validateUserRole()) { return error("Permissão para acessar essa rota negada!"); }
+    
     $newProduct = getProductFromParams($_POST);
     if(!$newProduct) return error("Parâmetros faltando!");
     if(!validateProduct($newProduct)) return error("Parâmetros inválidos!");
