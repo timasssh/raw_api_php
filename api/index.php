@@ -13,6 +13,7 @@ if(empty($_SESSION["role"])) {
 }
 
 include("../Models/Product.php");
+include("../utils/createInitialData.php");
 include("../utils/updateData.php");
 include("../utils/error.php");
 include("./getProducts.php");
@@ -23,16 +24,7 @@ include("./deleteProduct.php");
 
 header("Content-Type: application/json; charset=utf-8");
 
-$initialData = [];
-$product1 = new Product("Produto 1", 5.0, "Geral", 10);
-$product2 = new Product("Produto 2", 45.0, "Bebida", 23);
-$product3 = new Product("Produto 3", 17.0, "Comida", 1);
-
-array_push($initialData, $product1->toArray());
-array_push($initialData, $product2->toArray());
-array_push($initialData, $product3->toArray());
-
-updateData($initialData);
+if(empty(getData())) createInitialData();
 
 $requestedMethod = $_SERVER["REQUEST_METHOD"];
 if($requestedMethod === "GET"){

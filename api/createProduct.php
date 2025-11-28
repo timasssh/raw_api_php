@@ -16,7 +16,19 @@ function createProduct() {
     if(!validateProduct($newProduct)) return error("Parâmetros inválidos!");
     
     $data = getData() ?? [];
-    array_push($data, $newProduct);
+    
+
+    // forçando o id a ser o maior id dos produtos criados + 1, pois a abordagem:
+    // id = propriedade estática não funciona com múltiplas requisições :(
+
+    if(empty($data)) {
+        $newProduct->forceId(0);
+    }else {
+        $biggestId = max(array_column($data, "id")) ?? 0;
+        $newProduct->forceId($biggestId + 1);
+    }
+
+    array_push($data, $newProduct->toArray());
     updateData($data);
     
     return success(201, "Produto criado com sucesso!", $newProduct);
