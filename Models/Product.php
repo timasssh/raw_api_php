@@ -35,7 +35,7 @@ class Product{
         $this->price = $price;
     }
     public function getCategory(): string {
-        return $this->name;
+        return $this->category;
     }
     public function setCategory($category): void {
         $this->category = $category;
